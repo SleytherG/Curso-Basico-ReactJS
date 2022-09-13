@@ -1,16 +1,20 @@
 import React from "react";
+import { TodoContext } from "../../TodoContext/TodoContext";
 import './CreateTodoButton.css';
 
 function CreateTodoButton( props ) {
-    const onClickButton = ( text ) => {
-        alert(text);
+
+    const { openModal, setOpenModal } = React.useContext(TodoContext);
+
+    const onToggleOpenModal = () => {
+        setOpenModal(!openModal);
     }
 
     return(
         <React.Fragment>
             <button 
             className="CreateTodoButton"
-            onClick={ () => onClickButton('Aquí deberia abrir el alert') }
+            onClick={ onToggleOpenModal }
             >+</button>
         </React.Fragment>
     );

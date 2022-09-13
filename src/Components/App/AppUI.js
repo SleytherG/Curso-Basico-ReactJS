@@ -5,10 +5,21 @@ import { TodoCounter } from "../TodoCounter/TodoCounter";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoSearch } from "../TodoSearch/TodoSearch";
+import { Modal } from "../../Modal/Modal";
+import { TodoForm } from "../TodoForm/TodoForm";
+import ContentLoader from "react-content-loader";
+import { SkeletonLoader } from "../SkeletonLoader/SkeletonLoader";
 
 function AppUI() {
-  const { error, loading, searchedTodos, completeTodo, deleteTodo } =
-    React.useContext(TodoContext);
+  const {
+    error,
+    loading,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TodoContext);
 
   return (
     <React.Fragment>
@@ -16,7 +27,7 @@ function AppUI() {
       <TodoSearch />
       <TodoList>
         {error && <p>Desespérate, hubo un error...</p>}
-        {loading && <p>Estamos cargando, no desesperes...</p>}
+        {loading && new Array(4).fill().map((item,index) => ( <SkeletonLoader key={index}/>))}
         {!loading && !searchedTodos.length && <p>¡Crea tu primer TODO!</p>}
 
         {searchedTodos.map((todo) => (
@@ -29,6 +40,11 @@ function AppUI() {
           />
         ))}
       </TodoList>
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
       <CreateTodoButton />
     </React.Fragment>
   );
