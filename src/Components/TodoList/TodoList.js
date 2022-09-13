@@ -1,12 +1,12 @@
 import React from "react";
 import './TodoList.css';
 
-function TodoList(props){
+function TodoList( { children }){
     return(
         <React.Fragment>
             <section>
                 <ul>
-                    { props.children}
+                    { children }
                 </ul>
             </section>
         </React.Fragment>
