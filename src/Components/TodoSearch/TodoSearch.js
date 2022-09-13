@@ -2,20 +2,26 @@ import React from "react";
 import { TodoContext } from "../../TodoContext/TodoContext";
 import "./TodoSearch.css";
 
-function TodoSearch({ searchValue, setSearchValue }) {
-  const onSearchValueChange = (event) => {
-    console.log(event.target.value);
-    setSearchValue(event.target.value);
-  };
-
+function TodoSearch() {
   return (
     <React.Fragment>
-          <input
-          className="TodoSearch"
-          placeholder="Cebolla"
-          value={searchValue}
-          onChange={onSearchValueChange}
-        />
+      <TodoContext.Consumer>
+        {({ searchValue, setSearchValue }) => {
+          const onSearchValueChange = (event) => {
+            console.log(event.target.value);
+            setSearchValue(event.target.value);
+          };
+
+          return (
+            <input
+              className="TodoSearch"
+              placeholder="Cebolla"
+              value={searchValue}
+              onChange={onSearchValueChange}
+            />
+          );
+        }}
+      </TodoContext.Consumer>
     </React.Fragment>
   );
 }

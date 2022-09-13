@@ -1,11 +1,18 @@
 import React from "react";
+import { TodoContext } from "../../TodoContext/TodoContext";
 import './TodoCounter.css';
 
-function TodoCounter( {completed, total }) {
+function TodoCounter( ) {
 
   return (
     <React.Fragment>
-        <h2 className="TodoCounter" >Has completado { completed } de { total } TODOs</h2>
+        <TodoContext.Consumer>
+          { ({ completedTodos: completed, totalTodos: total}) => {
+            return (
+              <h2 className="TodoCounter" >Has completado { completed } de { total } TODOs</h2>
+            );
+          }}
+        </TodoContext.Consumer>
     </React.Fragment>
   );
 }
