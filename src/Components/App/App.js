@@ -13,7 +13,7 @@ import {TodosError} from "../TodosError/TodosError";
 import {TodosEmpty} from "../TodosEmpty/TodosEmpty";
 import {TodosLoading} from "../TodosLoading/TodosLoading";
 import {TodosEmptySearchResults} from "../TodosEmptySearchResults/TodosEmptySearchResults";
-import {ChangeAlertWithStorageListener} from "../ChangeAlert/ChangeAlert";
+import {ChangeAlert } from "../ChangeAlert/ChangeAlert";
 
 
 function App() {
@@ -88,7 +88,7 @@ function App() {
                 setOpenModal={setOpenModal}
                 loading={loading}
             />
-            <ChangeAlertWithStorageListener
+            <ChangeAlert
                 sincronize={sincronizeTodos}
             />
         </React.Fragment>
