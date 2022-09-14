@@ -1,10 +1,18 @@
 import React from "react";
 import './TodoList.css';
 
-function TodoList( { children }){
+function TodoList( { children, onError, onLoading, onEmpty, error, loading, searchedTodos, render, totalTodos, onEmptySearchResults }){
+
+    const renderFunc = render || children;
+
     return(
         <React.Fragment>
-            <section>
+            <section className="TodoList-container">
+                { error && onError() }
+                { loading && onLoading() }
+                { (!loading && !totalTodos) &&  onEmpty() }
+                { (!!totalTodos && !searchedTodos?.length) && onEmptySearchResults() }
+                { searchedTodos.map(renderFunc) }
                 <ul>
                     { children }
                 </ul>
