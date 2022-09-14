@@ -13,6 +13,7 @@ import {TodosError} from "../TodosError/TodosError";
 import {TodosEmpty} from "../TodosEmpty/TodosEmpty";
 import {TodosLoading} from "../TodosLoading/TodosLoading";
 import {TodosEmptySearchResults} from "../TodosEmptySearchResults/TodosEmptySearchResults";
+import {ChangeAlertWithStorageListener} from "../ChangeAlert/ChangeAlert";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         error,
         loading,
         searchedTodos,
-        completeTodo,
+        toggleCompleteTodo,
         deleteTodo,
         openModal,
         setOpenModal,
@@ -28,12 +29,13 @@ function App() {
         totalTodos,
         searchValue,
         setSearchValue,
-        addTodo
+        addTodo,
+        sincronizeTodos
     } = useTodos();
 
     return (
         <React.Fragment>
-            <TodoHeader>
+            <TodoHeader loading={loading}>
                 <TodoCounter
                     totalTodos={totalTodos}
                     completedTodos={completedTodos}
@@ -68,7 +70,7 @@ function App() {
                         key={todo.text}
                         text={todo.text}
                         completed={todo.completed}
-                        onComplete={() => completeTodo(todo.text)}
+                        onComplete={() => toggleCompleteTodo(todo.text)}
                         onDelete={() => deleteTodo(todo.text)}
                     />
                 )}
@@ -84,6 +86,10 @@ function App() {
             <CreateTodoButton
                 openModal={openModal}
                 setOpenModal={setOpenModal}
+                loading={loading}
+            />
+            <ChangeAlertWithStorageListener
+                sincronize={sincronizeTodos}
             />
         </React.Fragment>
     );

@@ -12,7 +12,7 @@ function TodoList( { children, onError, onLoading, onEmpty, error, loading, sear
                 { loading && onLoading() }
                 { (!loading && !totalTodos) &&  onEmpty() }
                 { (!!totalTodos && !searchedTodos?.length) && onEmptySearchResults() }
-                { searchedTodos.map(renderFunc) }
+                { (!loading && !error) && searchedTodos.map(renderFunc) }
                 <ul>
                     { children }
                 </ul>

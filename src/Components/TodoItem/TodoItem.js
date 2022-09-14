@@ -8,7 +8,7 @@ function TodoItem(props) {
                 <span className={`Icon Icon-check ${props.completed && 'Icon-check--active' }`} 
                 onClick={ props.onComplete }
                 >
-                    √
+                    <i className="bi bi-check-lg"></i>
                 </span>
                 <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`} >
                     {props.text}
@@ -16,7 +16,7 @@ function TodoItem(props) {
                 <span className="Icon Icon-delete"
                 onClick={ props.onDelete }
                 >
-                    X
+                    <i className="bi bi-x-lg"></i>
                 </span>
             </li>
         </React.Fragment>
